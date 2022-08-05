@@ -5,6 +5,8 @@ import { SubscribeButton } from '../components/SubscribeButton'
 import { stripe } from '../services/stripe'
 import styles from './home.module.scss'
 
+/* It's a type checker. It's saying that the Home component will receive a prop
+called product, which is an object with two properties: priceId and amount. */
 interface HomeProps {
   product: {
     priceId: string;
@@ -12,6 +14,11 @@ interface HomeProps {
   }
 }
 
+/**
+ * We're using the HomeProps interface to type check the props that are passed to
+ * the Home component
+ * @param {HomeProps}  - HomeProps
+ */
 export default function Home({ product }: HomeProps) {
   return (
     <>
@@ -39,6 +46,13 @@ export default function Home({ product }: HomeProps) {
   )
 }
 
+/**
+ * It retrieves the price from Stripe and returns it as a prop to the component
+ * @returns - props: {
+ *       product
+ *     },
+ *     revalidate: 60 * 60 * 24 //24 hours
+ */
 export const getStaticProps: GetStaticProps = async () => {
   const price = await stripe.prices.retrieve('price_1LQHBMFKbmr2IkUdLEWhGoiI')
 

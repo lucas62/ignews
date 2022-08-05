@@ -1,9 +1,13 @@
+/* A CSS reset. It is used to make sure that all browsers render all elements more
+consistently and in line with modern standards. It's a starting point that
+ensures proper rendering and touch zooming. */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* Defining the colors that will be used in the project. */
 :root {
     --white: #FFF;
 
@@ -17,6 +21,7 @@
     --yellow-500: #eba417;
 }
 
+/* Setting the font size for different screen sizes. */
 @media (max-width: 1080px) {
     html {
         font-size: 93.75%;
@@ -29,19 +34,23 @@
     }
 }
 
+/* Setting the background color to gray-900 and the text color to white. */
 body {
     background: var(--gray-900);
     color: var(--white);
 }
 
+/* Setting the font for the body, input, textarea, select, and button elements. */
 body, input, textarea, select, button {
    font: 400 1rem "Roboto", san-serif; 
 }
 
+/* Making the cursor change to a pointer when hovering over a button. */
 button {
     cursor: pointer;
 }
 
+/* Making the color of the link the same as the color of the text. */
 a {
     color: inherit;
     text-decoration: none;
