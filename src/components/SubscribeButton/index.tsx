@@ -1,3 +1,4 @@
+import { signIn, useSession } from 'next-auth/react';
 import styles from './styles.module.scss'
 
 /* It's defining the type of the props that the component will receive. */
@@ -16,10 +17,23 @@ interface SubscribeBttonProps {
  * @returns A button with the text "Subscribe now"
  */
 export function SubscribeButton({ priceId }: SubscribeBttonProps) {
+    const {data: session, status} = useSession()
+
+    function handleSubscribe() {
+        if (!session) {
+            signIn('github')
+            return
+        }
+
+          
+
+    }
+
     return (
         <button
             type="button"
             className={styles.subscribeButton}
+            onClick={handleSubscribe}
         >
             Subscribe now
         </button>
