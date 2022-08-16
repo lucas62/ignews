@@ -2,6 +2,9 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { getSession } from "next-auth/react";
 import { stripe } from "../../services/stripe";
 
+/* This is a Next.js API route. It is a function that is called when a request is
+made to the /api/checkout route. It is an async function that returns a
+response. */
 export default async (req: NextApiRequest, res: NextApiResponse) => {
     if ( req.method === 'POST') {
         const { user } = await getSession({ req })
