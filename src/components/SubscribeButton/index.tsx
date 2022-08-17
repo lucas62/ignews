@@ -1,4 +1,6 @@
 import { signIn, useSession } from 'next-auth/react';
+import { api } from '../../services/api';
+import { getStripeJs } from '../../services/stripe-js';
 import styles from './styles.module.scss'
 
 /* It's defining the type of the props that the component will receive. */
@@ -19,13 +21,24 @@ interface SubscribeBttonProps {
 export function SubscribeButton({ priceId }: SubscribeBttonProps) {
     const {data: session, status} = useSession()
 
-    function handleSubscribe() {
+    async function handleSubscribe() {
         if (!session) {
             signIn('github')
             return
         }
 
           
+        try {
+            const response = await api.post('/subscribe')
+
+            const { sessionId } = response.data
+
+            const stripe = await getStripeJs()
+
+            await stripe.redirectToCheckout({ sessionId })
+        } catch (e) {
+            alert(e.message)
+        }
 
     }
 
